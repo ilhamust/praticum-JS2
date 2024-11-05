@@ -94,3 +94,29 @@ document.getElementById("loadData").addEventListener("click", function () {
       document.getElementById("data").textContent = error;
     });
 });
+
+//menggunakan async/await
+async function loadDataAsync() {
+  try {
+    let data = await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let succes = true;
+        if (succes) {
+          resolve("Data berhasil dimuat dengan Async/Await!");
+        } else {
+          reject("Gagal memuat data!");
+        }
+      }, 2000);
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+document
+  .getElementById("loadData")
+  .addEventListener("click", async function () {
+    let result = await loadDataAsync();
+    document.getElementById("data").textContent = result;
+  });
